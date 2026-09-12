@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RevitYear Condition="'$(RevitYear)' == ''">2026</RevitYear>
+    <TargetFramework Condition="'$(RevitYear)' == '2023'">net48</TargetFramework>
+    <TargetFramework Condition="'$(RevitYear)' == '2026'">net8.0-windows</TargetFramework>
+    <AssemblyName>Waabe.RevitMcp.Addin</AssemblyName>
+    <RootNamespace>Waabe.RevitMcp.Addin</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Deterministic>true</Deterministic>
+    <PlatformTarget>x64</PlatformTarget>
+    <!-- RevitAPIUI references host-owned Autodesk/WPF assemblies with versions
+         that differ inside the Revit installation. Private=false below ensures
+         none of those host assemblies are redistributed by this project. -->
+    <NoWarn>$(NoWarn);MSB3277</NoWarn>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RevitInstallDir Condition="'$(RevitInstallDir)' == ''">C:\Program Files\Autodesk\Revit $(RevitYear)</RevitInstallDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="RevitAPI">
+      <HintPath>$(RevitInstallDir)\RevitAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>$(RevitInstallDir)\RevitAPIUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateRevitTarget" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(RevitYear)' != '2023' and '$(RevitYear)' != '2026'"
+           Text="Supported RevitYear values are 2023 and 2026." />
+    <Error Condition="!Exists('$(RevitInstallDir)\RevitAPI.dll')"
+           Text="RevitAPI.dll not found at $(RevitInstallDir). Install Revit $(RevitYear) or pass RevitInstallDir." />
+    <Error Condition="!Exists('$(RevitInstallDir)\RevitAPIUI.dll')"
+           Text="RevitAPIUI.dll not found at $(RevitInstallDir). Install Revit $(RevitYear) or pass RevitInstallDir." />
+  </Target>
+</Project>
