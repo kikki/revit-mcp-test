@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>WAABE Revit MCP Read-only</Name>
+    <Assembly>Waabe.RevitMcp.Addin\Waabe.RevitMcp.Addin.dll</Assembly>
+    <AddInId>18F2E86C-32EF-4DAA-A8EF-80C02C3F8894</AddInId>
+    <FullClassName>Waabe.RevitMcp.Addin.App</FullClassName>
+    <VendorId>WAAB</VendorId>
+    <VendorDescription>WAABE Revit MCP playground</VendorDescription>
+  </AddIn>
+</RevitAddIns>
