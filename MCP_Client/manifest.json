@@ -1,0 +1,53 @@
+{
+  "manifest_version": "0.3",
+  "name": "waabe-revit-readonly",
+  "display_name": "WAABE Revit MCP Read-only",
+  "version": "0.1.0",
+  "description": "Small read-only MCP bridge for Autodesk Revit 2023 and 2026.",
+  "long_description": "A playground extension that reads the active Revit version and document metadata through a Revit add-in. It performs no Revit transactions and exposes no write tools.",
+  "author": {
+    "name": "WAABE"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kikki/revit-mcp-test"
+  },
+  "documentation": "https://github.com/kikki/revit-mcp-test",
+  "support": "https://github.com/kikki/revit-mcp-test/issues",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "REVIT_TARGET_YEAR": "${user_config.revit_year}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "revit_get_document_info",
+      "description": "Read the connected Revit version, build and active-document metadata. Does not modify the model."
+    }
+  ],
+  "keywords": ["revit", "bim", "mcp", "read-only", "autodesk"],
+  "user_config": {
+    "revit_year": {
+      "type": "string",
+      "title": "Revit target year",
+      "description": "Choose the running Revit instance: 2023 or 2026.",
+      "default": "2026",
+      "required": true
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["win32"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "license": "UNLICENSED",
+  "privacy_policies": []
+}
