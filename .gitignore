@@ -1,0 +1,21 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.log
+.dotnet/
+.profile/
+.nuget/
+.appdata/
+artifacts/
+
+# Generated artifacts stay reproducible from source.
+generated_MCP_Client/*
+!generated_MCP_Client/README.md
+!generated_MCP_Client/*.mcpb
+!generated_MCP_Client/SHA256SUMS.txt
+generated_MCP_Server/*
+!generated_MCP_Server/README.md
+!generated_MCP_Server/*.zip
+!generated_MCP_Server/SHA256SUMS.txt
