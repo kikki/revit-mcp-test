@@ -1,0 +1,1 @@
+dc48511f13ee3d223943fd7aeefdaaed8569cb1e621719ac338ed22f98208db8  waabe-revit-mcp-readonly-addins.zip
